@@ -2,6 +2,7 @@ import {StyleSheet, Text, View, StatusBar} from 'react-native';
 import React from 'react'
 import { COLORS } from '../global/styles';
 import RootNavigator from '../navigation/RootNavigator';
+import HomeHeader from '../components/HomeHeader';
 const AppScreens = () => {
   return (
     <View style={styles.container}>
@@ -10,6 +11,7 @@ const AppScreens = () => {
         backgroundColor={COLORS.statusBar}
       />
       <RootNavigator />
+      {/* <HomeHeader /> */}
     </View>
   );
 }

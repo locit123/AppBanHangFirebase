@@ -81,7 +81,9 @@ const SignInScreen = (props) => {
         </View>
       </View>
       <View style={{marginHorizontal: 15, marginVertical: 10}}>
-        <TouchableOpacity style={PARAMETERS.styledButton}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('homeScreen')}
+          style={PARAMETERS.styledButton}>
           <Text style={PARAMETERS.buttonTitle}>SIGN IN</Text>
         </TouchableOpacity>
       </View>
