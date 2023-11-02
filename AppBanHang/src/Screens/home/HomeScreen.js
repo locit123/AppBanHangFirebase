@@ -14,10 +14,11 @@ import {COLORS} from '../../global/styles';
 import {filterData, resTauRatsDate} from '../../global/Data';
 import CategoriesView from '../../components/CategoriesView';
 import FoodCard from '../../components/FoodCard';
-import CountDown from 'react-native-countdown-component'
+import CountDown from 'react-native-countdown-component';
 const {width, height} = Dimensions.get('window');
 console.log('=>>>>>>', width);
-const HomeScreen = () => {
+const HomeScreen = props => {
+  const {navigation} = props;
   const [delivery, setDelivery] = useState(true);
   const [indexCheck, setIndexCheck] = useState(1);
   console.log(indexCheck);
@@ -28,6 +29,7 @@ const HomeScreen = () => {
         titleHeader="XpressFood"
         numberCart="0"
         name2="cart"
+        onPress={()=> navigation.toggleDrawer()}
       />
       <ScrollView
         stickyHeaderIndices={[0]}
@@ -45,7 +47,11 @@ const HomeScreen = () => {
                 <Text style={styles.deliveryText}>Delivery</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setDelivery(false)}>
+            <TouchableOpacity
+              onPress={() => {
+                setDelivery(false);
+                navigation.navigate('RestaurantsMapScreen');
+              }}>
               <View
                 style={{
                   ...styles.deliveryButton,
@@ -104,7 +110,7 @@ const HomeScreen = () => {
                 fontSize: 16,
                 marginRight: 5,
                 marginLeft: 15,
-                marginTop:8,
+                marginTop: 8,
                 fontWeight: 'bold',
               }}>
               Options changing in
@@ -118,7 +124,7 @@ const HomeScreen = () => {
               digitStyle={{backgroundColor: COLORS.lightgreen}}
               //colorText
               digitTxtStyle={{color: COLORS.cardBackground}}
-              //Chỉnh chỉ hiện M:Phút,S: giây
+              // Thuộc tính này xác định loại thông tin thời gian hiển thị trên đồng hồ đếm ngược.
               timeToShow={['M', 'S']}
               //chử ở dưới time
               timeLabels={{m: 'Min', s: 'Sec'}}
@@ -169,6 +175,16 @@ const HomeScreen = () => {
           })}
         </View>
       </ScrollView>
+      {delivery ? (
+        <View style={styles.floatButton}>
+          <TouchableOpacity
+            style={{alignItems: 'center', marginTop: 5}}
+            onPress={() => navigation.navigate('RestaurantsMapScreen')}>
+            <Ionicon name="location" size={24} color={COLORS.buttons} />
+            <Text style={{color: COLORS.gray2}}>Map</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
     </View>
   );
 };
@@ -229,5 +245,16 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: COLORS.gray2,
     fontWeight: 'bold',
+  },
+  floatButton: {
+    backgroundColor: 'white',
+    width: 60,
+    height: 60,
+    alignItems: 'center',
+    borderRadius: 30,
+    elevation: 10,
+    position: 'absolute',
+    bottom: 15,
+    right: 15,
   },
 });

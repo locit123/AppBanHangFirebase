@@ -6,6 +6,9 @@ import {
 import SignInWelcomeScreen from '../Screens/authScreens/SignInWelcomeScreen';
 import SignInScreen from '../Screens/authScreens/SignInScreen';
 import HomeScreen from '../Screens/home/HomeScreen';
+import ClientTabs from './ClientTabs';
+import RestaurantsMapScreen from '../Screens/home/RestaurantsMapScreen';
+import DrawerNavigator from './DrawerNavigator';
 const Auth = createNativeStackNavigator();
 const AuthNavigation = () => {
   return (
@@ -25,8 +28,15 @@ const AuthNavigation = () => {
         }}
       />
       <Auth.Screen
-        name="homeScreen"
-        component={HomeScreen}
+        name="drawerNavigator"
+        component={DrawerNavigator}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Auth.Screen
+        name="RestaurantsMapScreen"
+        component={RestaurantsMapScreen}
         options={{
           headerShown: false,
         }}

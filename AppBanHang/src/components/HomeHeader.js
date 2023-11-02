@@ -3,11 +3,11 @@ import React from 'react';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import {COLORS, PARAMETERS} from '../global/styles';
 const HomeHeader = (props) => {
-    const {name,titleHeader,numberCart,name2}= props;
+    const {name,titleHeader,numberCart,name2,onPress}= props;
   return (
     <View style={styles.header}>
       <View>
-        <Ionicon name={name} size={32} color={COLORS.cardBackground} />
+        <Ionicon name={name} size={32} color={COLORS.cardBackground} onPress={onPress}/>
       </View>
       <View>
         <Text style={{fontSize: 25, color: COLORS.cardBackground, fontWeight: 'bold'}}>
