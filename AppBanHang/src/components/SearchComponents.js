@@ -11,14 +11,37 @@ import {COLORS} from '../global/styles';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import {FlatList, TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable';
-import { filterData } from '../global/Data';
+import {filterData} from '../global/Data';
+import {useNavigation} from '@react-navigation/native';
 const SearchComponents = props => {
-  const {} = props;
+  const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [textInputFocused, setTextInputFocused] = useState(true);
-  const textInput=useRef(0)
+  const textInput = useRef(0);
+  console.log(textInput);
   const [data, setdata] = useState([...filterData]);
-  console.log(data)
+  console.log(data);
+
+  // //lọc dữ liệu
+  // const searchByName = searchTerm => {
+  //   const searchResults = filterData.filter(item =>
+  //     item.name.toLowerCase().includes(searchTerm.toLowerCase()),
+  //   );
+
+  //   setdata([...searchResults]);
+  // };
+
+  // console.log(data);
+
+  // //lọc dữ liệu = filter
+  const handleSearch = text => {
+    const locDuLieu = filterData.filter(locItem => {
+      //chuyển tất cả thành chữ thường.includes để kiểm tra xem người dùng có nhập đúng kqua xảy ra hay ko nếu đúng(text.toLowerCase())=>text là value ngườid dùng nhập để đối xứng với kqua đã tìm thấy
+      return locItem.name.toLowerCase().includes(text.toLowerCase());
+    });
+    setdata([...locDuLieu]);
+  };
+  console.log(data);
   return (
     <View>
       <TouchableOpacity onPress={() => setModalVisible(true)}>
@@ -42,14 +65,14 @@ const SearchComponents = props => {
             <View style={styles.TextInput}>
               <Animatable.View
                 duration={400}
-                animation={textInputFocused ? '' : 'fadeInLeft'}
+                animation={textInputFocused ? 'fadeInLeft' : 'fadeInLeft'}
                 style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Ionicon
                   name={textInputFocused ? 'arrow-back' : 'search'}
                   style={styles.icon2}
                   onPress={() => {
                     if (textInputFocused) setModalVisible(false);
-                    setTextInputFocused(false);
+                    setTextInputFocused(true);
                   }}
                 />
               </Animatable.View>
@@ -57,34 +80,49 @@ const SearchComponents = props => {
                 style={{width: '82%'}}
                 ref={textInput}
                 autoFocus={false}
+                onFocus={() => setTextInputFocused(true)}
+                onBlur={() => setTextInputFocused(false)}
+                onChangeText={handleSearch}
+                
+                
               />
               <Animatable.View
                 duration={400}
-                animation={textInputFocused ? '' : 'fadeInLeft'}>
+                animation={textInputFocused ? 'fadeInLeft' : 'fadeInLeft'}>
                 <Ionicon
                   name={textInputFocused ? 'close-circle' : null}
                   style={styles.icon2}
                   onPress={() => {
-                    textInput.current.clear();
+                   textInput.current.clear();
                   }}
                 />
               </Animatable.View>
             </View>
           </View>
-
-          <FlatList data={data}
-            renderItem={({item})=>{
+          {data.length > 0 ? (
+            <FlatList
+              data={data}
+              renderItem={({item}) => {
                 return (
-                    <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate('SearchResultScreen', {
+                        item: item.name,
+                      })
+                    }>
                     <View style={styles.view2}>
-
-                        <Text style={{color:COLORS.gray2,fontSize:15}}>{item.name}</Text>
+                      <Text style={{color: COLORS.gray2, fontSize: 15}}>
+                        {item.name}
+                      </Text>
                     </View>
-                    </TouchableOpacity>
-                )
-            }}
-            keyExtractor={item=> item.id}
-          />
+                  </TouchableOpacity>
+                );
+              }}
+              keyExtractor={item => item.id}
+            />
+          ) : (
+            <Text style={{color:COLORS.gray1,fontWeight:'bold',fontSize:30,alignSelf:'center'}}>Không có dữ liệu</Text>
+          )}
         </View>
       </Modal>
     </View>
