@@ -31,9 +31,6 @@ export const filterData = [
   },
 ];
 
-
-
-
 export const resTauRatsDate = [
   {
     id: 0,
@@ -189,5 +186,68 @@ export const resTauRatsDate = [
           'https://static.kfcvietnam.com.vn/images/items/lg/D5.jpg?v=3r2kb3',
       },
     ],
+  },
+];
+
+export const filterData2 = [
+  {
+    id: 1,
+    name: 'Burgers',
+    image: require('../assets/image/Burgers.png'),
+  },
+  {
+    id: 2,
+    name: 'Salads',
+    image: require('../assets/image/Salads.png'),
+  },
+  {
+    id: 3,
+    name: 'Hotdog',
+    image: require('../assets/image/Hotdog.png'),
+  },
+  {
+    id: 4,
+    name: 'Chinese',
+    image: require('../assets/image/Chinese.png'),
+  },
+  {
+    id: 5,
+    name: 'Mexican',
+    image: require('../assets/image/Mexican.png'),
+  },
+  {
+    id: 6,
+    name: 'Sea food',
+    image: require('../assets/image/Seafood.png'),
+  },
+  {
+    id: 7,
+    name: 'Chinese',
+    image: require('../assets/image/Chinese.png'),
+  },
+  {
+    id: 8,
+    name: 'Mexican',
+    image: require('../assets/image/Mexican.png'),
+  },
+  {
+    id: 9,
+    name: 'Sea food',
+    image: require('../assets/image/Seafood.png'),
+  },
+  {
+    id: 10,
+    name: 'Chinese',
+    image: require('../assets/image/Chinese.png'),
+  },
+  {
+    id: 11,
+    name: 'Mexican',
+    image: require('../assets/image/Mexican.png'),
+  },
+  {
+    id: 12,
+    name: 'Sea food',
+    image: require('../assets/image/Seafood.png'),
   },
 ];

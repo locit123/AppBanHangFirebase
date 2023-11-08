@@ -22,28 +22,17 @@ const SearchComponents = props => {
   const [data, setdata] = useState([...filterData]);
   console.log(data);
 
-  // //lọc dữ liệu
-  // const searchByName = searchTerm => {
-  //   const searchResults = filterData.filter(item =>
-  //     item.name.toLowerCase().includes(searchTerm.toLowerCase()),
-  //   );
-
-  //   setdata([...searchResults]);
-  // };
-
-  // console.log(data);
-
-  // //lọc dữ liệu = filter
   const handleSearch = text => {
     const locDuLieu = filterData.filter(locItem => {
-      //chuyển tất cả thành chữ thường.includes để kiểm tra xem người dùng có nhập đúng kqua xảy ra hay ko nếu đúng(text.toLowerCase())=>text là value ngườid dùng nhập để đối xứng với kqua đã tìm thấy
+      //chuyển tất cả thành chữ thường.includes để kiểm tra xem người dùng có nhập đúng kqua xảy ra hay ko nếu đúng(text.toLowerCase())
+      //=>text là value ngườid dùng nhập để đối xứng với kqua đã tìm thấy
       return locItem.name.toLowerCase().includes(text.toLowerCase());
     });
     setdata([...locDuLieu]);
   };
   console.log(data);
   return (
-    <View>
+    <View style={{marginHorizontal: 10}}>
       <TouchableOpacity onPress={() => setModalVisible(true)}>
         <View style={styles.searchArea}>
           <Ionicon
@@ -83,8 +72,6 @@ const SearchComponents = props => {
                 onFocus={() => setTextInputFocused(true)}
                 onBlur={() => setTextInputFocused(false)}
                 onChangeText={handleSearch}
-                
-                
               />
               <Animatable.View
                 duration={400}
@@ -93,7 +80,7 @@ const SearchComponents = props => {
                   name={textInputFocused ? 'close-circle' : null}
                   style={styles.icon2}
                   onPress={() => {
-                   textInput.current.clear();
+                    textInput.current.clear();
                   }}
                 />
               </Animatable.View>
@@ -121,7 +108,15 @@ const SearchComponents = props => {
               keyExtractor={item => item.id}
             />
           ) : (
-            <Text style={{color:COLORS.gray1,fontWeight:'bold',fontSize:30,alignSelf:'center'}}>Không có dữ liệu</Text>
+            <Text
+              style={{
+                color: COLORS.gray1,
+                fontWeight: 'bold',
+                fontSize: 30,
+                alignSelf: 'center',
+              }}>
+              Không có dữ liệu
+            </Text>
           )}
         </View>
       </Modal>
