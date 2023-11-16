@@ -16,11 +16,13 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 const DrawerContent = props => {
+  
+  console.log('PROPS:',props);
     const [toggle, setToggle] = useState(false);
 console.log(toggle);
   return (
     <View style={styles.container}>
-    {/* //dùng để cuộn view khi quá dài */}
+      {/* //dùng để cuộn view khi quá dài */}
       <DrawerContentScrollView {...props}>
         <View style={{backgroundColor: COLORS.buttons}}>
           <View
@@ -121,6 +123,7 @@ console.log(toggle);
           </View>
         </View>
       </DrawerContentScrollView>
+      {/* DrawerItem là thêm mới 1 item */}
       <DrawerItem
         label={'SignOut'}
         icon={({focused, size}) => (

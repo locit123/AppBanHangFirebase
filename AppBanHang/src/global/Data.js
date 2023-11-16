@@ -118,7 +118,7 @@ export const resTauRatsDate = [
     images:
       'https://static.kfcvietnam.com.vn/images/items/lg/Rice-Steak.jpg?v=3r2kb3',
     averageReview: 4.3,
-    numberOfReviews: 306,
+    numberOfReviews: 3016,
     coordinates: {
       lat: -26.1891648,
       lng: 28.2441808,
@@ -157,7 +157,7 @@ export const resTauRatsDate = [
     images:
       'https://static.kfcvietnam.com.vn/images/items/lg/MOD-PHI-LE-GA-QUAY.jpg?v=3r2kb3',
     averageReview: 4.3,
-    numberOfReviews: 306,
+    numberOfReviews: 206,
     coordinates: {
       lat: -26.1891648,
       lng: 28.2441808,

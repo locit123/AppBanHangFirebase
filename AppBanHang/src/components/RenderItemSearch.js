@@ -9,9 +9,10 @@ import React from 'react';
 import {Image} from 'react-native-animatable';
 const {width, height} = Dimensions.get('window');
 const RenderItemSearch = props => {
-  const {data} = props;
+  const {data,navigation} = props;
   return (
     <TouchableOpacity
+      onPress={() => navigation.navigate('SearchResultScreen',{item:data.name})}
       style={{
         flex: 1,
         height: 200,

@@ -17,9 +17,11 @@ const SearchScreen = () => {
           showsHorizontalScrollIndicator={false}
           numColumns={'2'}
           data={filterData2}
-          renderItem={({item}) => <RenderItemSearch data={item} />}
+          renderItem={({item}) => (
+            <RenderItemSearch data={item} navigation={navigation} />
+          )}
           keyExtractor={item => item.id}
-          ListFooterComponent={<Footer />}
+          ListFooterComponent={<Footer navigation={navigation} />}
           ListHeaderComponent={
             <Text
               style={{
@@ -38,7 +40,8 @@ const SearchScreen = () => {
   );
 };
 
-const Footer = () => {
+const Footer = (props) => {
+  const {navigation} = props;
   return (
     <View style={{flex: 1}}>
       <FlatList
@@ -47,7 +50,9 @@ const Footer = () => {
         showsHorizontalScrollIndicator={false}
         numColumns={'2'}
         data={filterData2}
-        renderItem={({item}) => <RenderItemSearch data={item} />}
+        renderItem={({item}) => (
+          <RenderItemSearch data={item} navigation={navigation} />
+        )}
         keyExtractor={item => item.id}
         ListHeaderComponent={
           <Text
