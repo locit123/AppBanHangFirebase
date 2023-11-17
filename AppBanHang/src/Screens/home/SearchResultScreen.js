@@ -4,6 +4,7 @@ import SearchResultCard from '../../components/SearchResultCard'
 import { resTauRatsDate } from '../../global/Data';
 import { COLORS } from '../../global/styles';
 
+
 const SearchResultScreen = ({route}) => {
   
   return (
@@ -12,6 +13,7 @@ const SearchResultScreen = ({route}) => {
        {resTauRatsDate.length}.Search Result for {route.params.item}
       </Text>
       <SearchResultCard />
+      
     </View>
   );
 }

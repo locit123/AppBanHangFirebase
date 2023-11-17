@@ -6,16 +6,22 @@ import {Image} from 'react-native-animatable';
 const {width, height} = Dimensions.get('window');
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../global/styles';
+import ProductCard from './ProductCard';
 const SearchResultCard = () => {
+  const oneItem = resTauRatsDate[0];
   return (
     <View style={styles.container}>
-      <FlatList
+      <View>
+        <FlatList
         showsVerticalScrollIndicator={false}
-        data={resTauRatsDate}
+        data={[oneItem]}
         renderItem={({item}) => <Card data={item} />}
         keyExtractor={item => item.id}
-        ListEmptyComponent={() => <Card2 />}
       />
+      </View>
+      <View>
+        <ProductCard />
+      </View>
     </View>
   );
 };
@@ -97,13 +103,7 @@ const Card = props => {
     </TouchableOpacity>
   );
 };
-const Card2 = () => {
-  return (
-    <View style={{backgroundColor: 'black'}}>
-      <Text>Loc</Text>
-    </View>
-  );
-};
+
 export default SearchResultCard;
 
 const styles = StyleSheet.create({
