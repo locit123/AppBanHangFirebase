@@ -1,6 +1,12 @@
-import {StyleSheet, Text, View, Dimensions,FlatList,TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
-
 
 import {Image} from 'react-native-animatable';
 const {width, height} = Dimensions.get('window');
@@ -15,11 +21,12 @@ const SearchResultCard = ({
   farAway,
   businessAddress,
   productData,
+  navigation,
 }) => {
   return (
     <View style={styles.container}>
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={navigation}>
           <View style={styles.view1}>
             <Image style={styles.view1Image} source={{uri: images}} />
           </View>
@@ -48,7 +55,7 @@ const SearchResultCard = ({
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           data={productData}
-          keyExtractor={(item,index) => index.toString()}
+          keyExtractor={(item, index) => index.toString()}
           renderItem={({item}) => (
             <ProductCard
               productName={item.name}
@@ -62,13 +69,11 @@ const SearchResultCard = ({
   );
 };
 
-
 export default SearchResultCard;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
- 
   },
   view1: {
     width: width,

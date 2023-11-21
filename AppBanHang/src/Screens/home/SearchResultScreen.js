@@ -4,19 +4,21 @@ import SearchResultCard from '../../components/SearchResultCard';
 import {resTauRatsDate} from '../../global/Data';
 import {COLORS} from '../../global/styles';
 
-const SearchResultScreen = ({route}) => {
+const SearchResultScreen = ({route, navigation}) => {
   return (
     <View style={{flex: 1}}>
       <Text style={styles.listHeader}>
         {resTauRatsDate.length}.Search Result for {route.params.item}
       </Text>
       <FlatList
-      showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         data={resTauRatsDate}
-        keyExtractor={(item) => item.id}
-        renderItem={({item}) => (
-          
-            <SearchResultCard
+        keyExtractor={item => item.id}
+        renderItem={({item, index}) => (
+          <SearchResultCard
+            navigation={() =>
+              navigation.navigate('RestaurantHomeScreen', {id: index})
+            }
             images={item.images}
             averageReview={item.averageReview}
             numberOfReviews={item.numberOfReviews}
@@ -25,9 +27,6 @@ const SearchResultScreen = ({route}) => {
             businessAddress={item.businessAddress}
             productData={item.productData}
           />
-          
-          
-          
         )}
       />
     </View>
